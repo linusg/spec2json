@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "spec2json"
+version = "0.1.0"
+description = "Extract section metadata and algorithm steps from specification HTML documents as JSON."
+authors = ["Linus Groh <mail@linusgroh.de>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/linusg/spec2json"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Text Processing :: Markup :: HTML",
+    "Topic :: Utilities"
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+beautifulsoup4 = "^4.10.0"
+click = "^8.1.2"
+html5lib = "^1.1"
+httpx = "^0.22.0"
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+isort = "^5.10.1"
+mypy = "^0.942"
+types-beautifulsoup4 = "^4.10.18"
+
+[tool.poetry.scripts]
+spec2json = "spec2json.cli:main"
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 88
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
