@@ -9,12 +9,15 @@ __all__ = ["NumberingStyle", "number_and_flatten_algorithm_steps"]
 
 
 def int_to_alpha(number: int) -> str:
+    if number <= 0:
+        raise ValueError("number must be >= 1")
     result = []
     while number > 0:
-        letter = chr(ord("a") + (number - 1 % 26))
-        number -= 26
-        result.append(letter)
-    return "".join(result)
+        right_most_value = (number - 1) % 26
+        result.append(chr(ord("a") + right_most_value))
+        number -= 1
+        number //= 26
+    return "".join(result[::-1])
 
 
 def int_to_roman(number: int) -> str:
