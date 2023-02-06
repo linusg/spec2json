@@ -1,12 +1,9 @@
 from __future__ import annotations
 
-from typing import cast
-
 import httpx
-from bs4 import BeautifulSoup, Tag
+from bs4 import BeautifulSoup
 
-from spec2json.exceptions import InvalidSpecContentTypeError, UnknownSpecFormatError
-from spec2json.parsers import BikeshedParser, EcmarkupParser, Parser
+from spec2json.exceptions import InvalidSpecContentTypeError
 
 __all__ = ["get_html", "get_soup", "get_parser_class"]
 
