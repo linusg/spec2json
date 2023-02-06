@@ -25,8 +25,12 @@ def join_and_normalize_strings(parts: Iterable[str]) -> str:
 
 def parse_emu_alg_entry(li_tag: Tag) -> str:
     """Parse a <li> tag from an <emu-alg> <ol> tag."""
+    # Insert '^' for exponentiations
     for sup_tag in li_tag.find_all("sup"):
         sup_tag.replace_with(f"^{join_and_normalize_strings(sup_tag.strings)}")
+    # Remove any content within a <del>, to support AO diffs
+    for del_tag in li_tag.find_all("del"):
+        del_tag.decompose()
     return join_and_normalize_strings(li_tag.strings)
 
 
@@ -37,7 +41,9 @@ def parse_emu_alg_list(ol_tag: Tag) -> NestedAlgorithmSteps:
     for li_tag in li_tags:
         if nested_ol_tag := li_tag.find("ol", recursive=False):
             nested_ol_tag.extract()
-        steps.append(parse_emu_alg_entry(li_tag))
+        # <li> may contain empty string after removing <del> text
+        if emu_alg_entry := parse_emu_alg_entry(li_tag):
+            steps.append(emu_alg_entry)
         if nested_ol_tag:
             steps.append(parse_emu_alg_list(nested_ol_tag))
     return steps
