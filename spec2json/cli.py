@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from typing import cast
 
 import click
 import httpx
@@ -8,6 +9,7 @@ import httpx
 from spec2json.exceptions import InvalidSpecContentTypeError, UnknownSpecFormatError
 from spec2json.numbering import number_and_flatten_algorithm_steps
 from spec2json.parsers import get_parser_class
+from spec2json.spec import NestedAlgorithmSteps
 from spec2json.utils import get_html, get_soup
 
 
@@ -70,8 +72,11 @@ def main(numbered: bool, url_format: str | None, specs: list[str]) -> None:
         click.echo("-> Numbering and flattening algorithm steps", err=True)
         if numbered:
             for section in sections:
-                section.algorithm_steps = number_and_flatten_algorithm_steps(
-                    section.algorithm_steps, parser.numbering_style_for_level
+                section.algorithm_steps = cast(
+                    NestedAlgorithmSteps,
+                    number_and_flatten_algorithm_steps(
+                        section.algorithm_steps, parser.numbering_style_for_level
+                    ),
                 )
 
         click.echo(f"-> Done, parsed {len(sections)} sections", err=True)
