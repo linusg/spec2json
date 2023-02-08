@@ -25,5 +25,6 @@ jobs:
       - name: Print versions
         run: |
           poetry --version
+          poetry run python3 --version
       - name: Build package
         run: poetry build

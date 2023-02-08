@@ -28,6 +28,7 @@ jobs:
       - name: Print versions
         run: |
           poetry --version
+          poetry run python3 --version
           poetry run black --version
           poetry run isort --version
           poetry run mypy --version
