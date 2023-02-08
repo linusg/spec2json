@@ -6,7 +6,7 @@
 [![PyPI](https://img.shields.io/pypi/v/spec2json)](https://pypi.org/project/spec2json/)
 ![Python Version](https://img.shields.io/pypi/pyversions/spec2json)
 [![License: MIT](https://img.shields.io/github/license/linusg/spec2json?color=d63e97)](https://github.com/linusg/spec2json/blob/main/LICENSE)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000)](https://github.com/ambv/black)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000)](https://github.com/psf/black)
 [![Imports: isort](https://img.shields.io/badge/imports-isort-1674b1?labelColor=ef8336)](https://pycqa.github.io/isort/)
 
 ## Installation
